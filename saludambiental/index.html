@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salud Ambiental — Propuesta de Identidad Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary:        #cc785c;
+  --primary-active: #a9583e;
+  --primary-disabled:#e6dfd8;
+  --ink:            #141413;
+  --body:           #3d3d3a;
+  --body-strong:    #252523;
+  --muted:          #6c6a64;
+  --muted-soft:     #8e8b82;
+  --hairline:       #e6dfd8;
+  --hairline-soft:  #ebe6df;
+  --canvas:         #faf9f5;
+  --surface-soft:   #f5f0e8;
+  --surface-card:   #efe9de;
+  --surface-cream-strong: #e8e0d2;
+  --surface-dark:   #181715;
+  --surface-dark-el:#252320;
+  --surface-dark-soft:#1f1e1b;
+  --on-primary:     #ffffff;
+  --on-dark:        #faf9f5;
+  --on-dark-soft:   #a09d96;
+  --accent-teal:    #5db8a6;
+  --success:        #5db872;
+  --warning:        #d4a017;
+  --error:          #c64545;
+
+  --serif: 'Cormorant Garamond', 'Tiempos Headline', Georgia, serif;
+  --sans:  'Inter', system-ui, sans-serif;
+  --mono:  'JetBrains Mono', ui-monospace, monospace;
+
+  --r-xs: 4px; --r-sm: 6px; --r-md: 8px; --r-lg: 12px; --r-xl: 16px; --r-pill: 9999px;
+  --sp-xxs:4px; --sp-xs:8px; --sp-sm:12px; --sp-md:16px; --sp-lg:24px; --sp-xl:32px; --sp-xxl:48px; --sp-section:96px;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--canvas); color: var(--body); line-height: 1.55; font-size: 16px; font-weight: 400; }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--canvas); border-bottom: 1px solid var(--hairline);
+  height: 64px; display: flex; align-items: center;
+}
+.nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 var(--sp-xl); width: 100%; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { display: flex; align-items: center; gap: var(--sp-xs); text-decoration: none; }
+.nav-logo svg { width: 20px; height: 20px; }
+.nav-logo-text { font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--ink); letter-spacing: 0; }
+.nav-links { display: flex; gap: var(--sp-xl); list-style: none; }
+.nav-links a { font-size: 14px; font-weight: 500; color: var(--muted); text-decoration: none; transition: color .15s; }
+.nav-links a:hover { color: var(--ink); }
+.nav-cta { background: var(--primary); color: var(--on-primary); font-family: var(--sans); font-size: 14px; font-weight: 500; border: none; cursor: pointer; padding: 10px 20px; border-radius: var(--r-md); text-decoration: none; white-space: nowrap; }
+.nav-cta:hover { background: var(--primary-active); }
+
+/* ── HERO ── */
+.hero { background: var(--canvas); padding: var(--sp-section) var(--sp-xl); border-bottom: 1px solid var(--hairline); }
+.hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-xxl); align-items: center; }
+.hero-eyebrow { font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: var(--sp-md); }
+.hero h1 { font-family: var(--serif); font-size: clamp(36px, 4vw, 56px); font-weight: 400; line-height: 1.08; letter-spacing: -1px; color: var(--ink); margin-bottom: var(--sp-lg); }
+.hero h1 em { font-style: italic; color: var(--primary); }
+.hero-sub { font-size: 16px; color: var(--muted); line-height: 1.6; margin-bottom: var(--sp-xl); max-width: 440px; }
+.hero-actions { display: flex; align-items: center; gap: var(--sp-md); }
+.btn-primary { background: var(--primary); color: var(--on-primary); font-size: 14px; font-weight: 500; padding: 10px 20px; border-radius: var(--r-md); text-decoration: none; display: inline-block; }
+.btn-primary:hover { background: var(--primary-active); }
+.btn-secondary { background: var(--canvas); color: var(--ink); font-size: 14px; font-weight: 500; padding: 10px 20px; border-radius: var(--r-md); text-decoration: none; border: 1px solid var(--hairline); display: inline-block; }
+.hero-card { background: var(--surface-dark); border-radius: var(--r-xl); padding: var(--sp-xl); }
+.hero-card-label { font-size: 12px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--on-dark-soft); margin-bottom: var(--sp-md); }
+.hero-meta-row { display: flex; flex-direction: column; gap: var(--sp-md); }
+.hero-meta-item .label { font-size: 12px; color: var(--on-dark-soft); margin-bottom: 2px; }
+.hero-meta-item .value { font-size: 15px; font-weight: 500; color: var(--on-dark); }
+.hero-deadline { margin-top: var(--sp-lg); background: var(--surface-dark-el); border-radius: var(--r-md); padding: var(--sp-sm) var(--sp-md); display: flex; align-items: center; gap: var(--sp-xs); }
+.hero-deadline-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--error); flex-shrink: 0; }
+.hero-deadline p { font-size: 13px; color: var(--on-dark-soft); }
+.hero-deadline strong { color: var(--on-dark); font-weight: 500; }
+
+/* ── LAYOUT ── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 var(--sp-xl); }
+section { padding: var(--sp-section) var(--sp-xl); }
+.section-cream { background: var(--canvas); }
+.section-soft { background: var(--surface-soft); }
+.section-card { background: var(--surface-card); }
+.section-dark { background: var(--surface-dark); }
+
+.section-eyebrow { font-size: 12px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: var(--sp-sm); }
+.section-eyebrow-on-dark { color: var(--on-dark-soft); }
+.section-title { font-family: var(--serif); font-size: clamp(28px, 3vw, 40px); font-weight: 400; letter-spacing: -0.5px; line-height: 1.15; color: var(--ink); margin-bottom: var(--sp-md); }
+.section-title-on-dark { color: var(--on-dark); }
+.section-lead { font-size: 16px; color: var(--muted); line-height: 1.65; max-width: 580px; margin-bottom: var(--sp-xxl); }
+.section-lead-on-dark { color: var(--on-dark-soft); }
+
+/* ── ALERT ── */
+.alert-banner { background: var(--surface-cream-strong); border: 1px solid var(--hairline); border-radius: var(--r-lg); padding: var(--sp-md) var(--sp-lg); display: flex; align-items: flex-start; gap: var(--sp-sm); margin-bottom: var(--sp-xxl); }
+.alert-banner-error { background: #fdf3f3; border-color: #f5b8b8; }
+.alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.alert-banner p { font-size: 14px; color: var(--body-strong); line-height: 1.55; }
+.alert-banner strong { font-weight: 500; }
+
+/* ── FEATURE CARDS ── */
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--sp-lg); margin-bottom: var(--sp-xl); }
+.feature-card { background: var(--surface-card); border-radius: var(--r-lg); padding: var(--sp-xl); }
+.feature-card-ok { background: var(--canvas); border: 1px solid var(--hairline); }
+.feature-card h4 { font-family: var(--sans); font-size: 16px; font-weight: 500; color: var(--ink); margin-bottom: var(--sp-xs); margin-top: var(--sp-sm); }
+.feature-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+.badge-pill { display: inline-block; font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: var(--r-pill); background: var(--surface-cream-strong); color: var(--muted); }
+.badge-coral { background: var(--primary); color: var(--on-primary); }
+.badge-error { background: #fdf3f3; color: #9b2c2c; }
+.badge-warning { background: #fffbeb; color: #78350f; }
+.badge-success { background: #f0fdf4; color: #166534; }
+
+/* ── SPLIT (agentic) ── */
+.split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-lg); margin-bottom: var(--sp-xl); }
+.split-card-cream { background: var(--canvas); border: 1px solid var(--hairline); border-radius: var(--r-lg); padding: var(--sp-xl); }
+.split-card-dark { background: var(--surface-dark); border-radius: var(--r-lg); padding: var(--sp-xl); }
+.split-card-cream h3, .split-card-dark h3 { font-family: var(--sans); font-size: 18px; font-weight: 500; line-height: 1.4; margin-bottom: var(--sp-lg); }
+.split-card-cream h3 { color: var(--ink); }
+.split-card-dark h3 { color: var(--accent-teal); }
+.point { display: flex; gap: var(--sp-sm); margin-bottom: var(--sp-md); }
+.point-arrow { color: var(--primary); font-weight: 500; flex-shrink: 0; font-size: 13px; margin-top: 2px; }
+.point-arrow-dark { color: var(--accent-teal); }
+.point p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+.point p.on-dark { color: var(--on-dark-soft); }
+.new-badge { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; background: var(--accent-teal); color: #fff; padding: 3px 10px; border-radius: var(--r-pill); margin-bottom: var(--sp-md); }
+
+/* ── COMPETITOR CARDS ── */
+.comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-lg); margin-bottom: var(--sp-xl); }
+.comp-card { background: var(--canvas); border: 1px solid var(--hairline); border-radius: var(--r-lg); overflow: hidden; }
+.comp-header { background: var(--surface-dark); padding: var(--sp-lg) var(--sp-xl); }
+.comp-header h3 { font-size: 16px; font-weight: 500; color: var(--on-dark); margin-bottom: 4px; }
+.comp-header .url { font-family: var(--mono); font-size: 12px; color: var(--on-dark-soft); }
+.comp-body { padding: var(--sp-lg) var(--sp-xl) var(--sp-xl); }
+.comp-score { display: inline-flex; font-size: 13px; font-weight: 500; padding: 4px 12px; border-radius: var(--r-pill); margin: var(--sp-md) 0; }
+.comp-section-label { font-size: 12px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; margin: var(--sp-md) 0 var(--sp-xs); }
+.comp-section-label.pos { color: var(--accent-teal); }
+.comp-section-label.neg { color: var(--primary); }
+.comp-item { display: flex; gap: var(--sp-xs); margin-bottom: var(--sp-xs); font-size: 13px; color: var(--muted); line-height: 1.55; }
+.comp-item .sign { font-weight: 600; flex-shrink: 0; width: 12px; }
+.comp-item .sign.plus { color: var(--accent-teal); }
+.comp-item .sign.minus { color: var(--primary); }
+
+/* ── UX TABLE ── */
+.table-wrap { overflow-x: auto; border-radius: var(--r-lg); border: 1px solid var(--hairline); margin-bottom: var(--sp-lg); }
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 680px; }
+.data-table th { background: var(--surface-dark); color: var(--on-dark); font-family: var(--sans); font-weight: 500; padding: 10px 16px; text-align: left; font-size: 12px; letter-spacing: .5px; }
+.data-table td { padding: 10px 16px; border-bottom: 1px solid var(--hairline-soft); vertical-align: middle; color: var(--body); }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:nth-child(even) td { background: var(--surface-soft); }
+.data-table .criterion { font-weight: 500; color: var(--ink); }
+.chip { display: inline-block; font-size: 12px; font-weight: 500; padding: 3px 10px; border-radius: var(--r-pill); }
+.chip-green { background: #f0fdf4; color: #166534; }
+.chip-amber { background: #fffbeb; color: #78350f; }
+.chip-red   { background: #fdf3f3; color: #9b2c2c; }
+.chip-gray  { background: var(--surface-card); color: var(--muted); }
+
+/* ── SCOPE ── */
+.scope-grid { display: grid; grid-template-columns: 2fr 1fr; gap: var(--sp-lg); }
+.scope-dark { background: var(--surface-dark); border-radius: var(--r-lg); padding: var(--sp-xl); }
+.scope-dark h3 { font-family: var(--serif); font-size: 28px; font-weight: 400; color: var(--on-dark); margin-bottom: var(--sp-lg); letter-spacing: -0.3px; }
+.scope-item { display: flex; gap: var(--sp-sm); margin-bottom: var(--sp-md); }
+.scope-arrow { color: var(--accent-teal); font-weight: 500; flex-shrink: 0; font-size: 13px; margin-top: 2px; }
+.scope-item p { font-size: 14px; color: var(--on-dark-soft); line-height: 1.6; }
+.scope-cream { background: var(--canvas); border: 1px solid var(--hairline); border-radius: var(--r-lg); padding: var(--sp-xl); }
+.scope-cream h3 { font-size: 18px; font-weight: 500; color: var(--ink); margin-bottom: var(--sp-lg); }
+.aside-item { display: flex; gap: var(--sp-xs); margin-bottom: var(--sp-xs); font-size: 13px; color: var(--muted); line-height: 1.55; }
+.aside-dot { color: var(--primary); font-weight: 600; }
+
+/* ── TIMELINE ── */
+.timeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--sp-sm); margin-bottom: var(--sp-lg); }
+.phase { border-radius: var(--r-lg); padding: var(--sp-lg); }
+.ph1 { background: var(--surface-dark); }
+.ph2 { background: var(--surface-dark-el); }
+.ph3 { background: #1f3045; }
+.ph4 { background: #1a4d46; }
+.ph5 { background: var(--primary); }
+.phase-num  { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; color: rgba(250,249,245,.4); margin-bottom: 4px; }
+.phase-weeks{ font-size: 12px; color: rgba(250,249,245,.5); margin-bottom: var(--sp-sm); }
+.phase-name { font-size: 14px; font-weight: 500; color: var(--on-dark); margin-bottom: var(--sp-sm); }
+.phase-items { list-style: none; }
+.phase-items li { font-size: 12px; color: rgba(250,249,245,.65); line-height: 1.55; margin-bottom: 4px; padding-left: 12px; position: relative; }
+.phase-items li::before { content: '·'; position: absolute; left: 0; color: rgba(250,249,245,.35); }
+.deadline-wrap { display: flex; align-items: center; gap: var(--sp-sm); margin-top: var(--sp-md); }
+.deadline-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--error); color: #fff; font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: var(--r-md); }
+
+/* ── LINKEDIN ── */
+.li-grid { display: flex; flex-direction: column; gap: var(--sp-md); }
+.li-card { background: var(--canvas); border: 1px solid var(--hairline); border-radius: var(--r-lg); padding: var(--sp-lg) var(--sp-xl); display: grid; grid-template-columns: 40px 1fr auto; gap: var(--sp-lg); align-items: start; }
+.li-num { width: 40px; height: 40px; border-radius: 50%; background: var(--surface-dark); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; color: var(--on-dark); flex-shrink: 0; }
+.li-content h4 { font-size: 16px; font-weight: 500; color: var(--ink); margin-bottom: var(--sp-xs); }
+.li-content p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+.li-tags { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; min-width: 130px; }
+.li-tag { background: var(--surface-card); color: var(--muted); font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: var(--r-pill); white-space: nowrap; }
+
+/* ── URL TABLES ── */
+.url-code { font-family: var(--mono); font-size: 12px; color: var(--ink); }
+.url-dest { font-family: var(--mono); font-size: 12px; color: var(--primary); }
+.action-keep  { background: #f0fdf4; color: #166534; font-size: 12px; font-weight: 500; padding: 3px 10px; border-radius: var(--r-pill); white-space: nowrap; }
+.action-merge { background: #eff6ff; color: #1e40af; font-size: 12px; font-weight: 500; padding: 3px 10px; border-radius: var(--r-pill); white-space: nowrap; }
+.action-drop  { background: #fdf3f3; color: #9b2c2c; font-size: 12px; font-weight: 500; padding: 3px 10px; border-radius: var(--r-pill); white-space: nowrap; }
+.url-note { font-size: 13px; color: var(--muted); }
+
+/* ── STATS ── */
+.stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--sp-md); margin-bottom: var(--sp-xxl); }
+.stat-card { background: var(--canvas); border: 1px solid var(--hairline); border-radius: var(--r-lg); padding: var(--sp-lg) var(--sp-xl); }
+.stat-card .num { font-family: var(--serif); font-size: 40px; font-weight: 400; color: var(--ink); display: block; margin-bottom: 4px; }
+.stat-card .lbl { font-size: 13px; color: var(--muted); }
+
+/* ── QUICK WINS ── */
+.qw-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--sp-md); }
+.qw-card { background: var(--surface-card); border-radius: var(--r-lg); padding: var(--sp-lg); display: flex; gap: var(--sp-md); align-items: flex-start; }
+.qw-icon { width: 36px; height: 36px; border-radius: 50%; background: var(--canvas); border: 1px solid var(--hairline); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.qw-icon svg { width: 16px; height: 16px; stroke: var(--primary); }
+.qw-card h4 { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.qw-card p  { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+/* ── CORAL CTA ── */
+.cta-band { background: var(--primary); border-radius: var(--r-lg); padding: 64px var(--sp-xxl); text-align: center; margin: 0 var(--sp-xl); }
+.cta-band h2 { font-family: var(--serif); font-size: 36px; font-weight: 400; letter-spacing: -0.5px; color: var(--on-primary); margin-bottom: var(--sp-md); }
+.cta-band p  { font-size: 16px; color: rgba(255,255,255,.75); margin-bottom: var(--sp-xl); }
+.btn-canvas { background: var(--canvas); color: var(--ink); font-size: 14px; font-weight: 500; padding: 10px 24px; border-radius: var(--r-md); text-decoration: none; display: inline-block; }
+.btn-canvas:hover { background: var(--surface-soft); }
+
+/* ── FOOTER ── */
+footer { background: var(--surface-dark); padding: 64px var(--sp-xl); margin-top: 0; }
+.footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-end; }
+.footer-logo { font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--on-dark); margin-bottom: var(--sp-xs); }
+.footer-note { font-size: 13px; color: var(--on-dark-soft); }
+.footer-email a { color: var(--primary); text-decoration: none; font-size: 14px; }
+
+/* ── SECTION SEPARATORS ── subtitle ── */
+.subsection-title { font-size: 18px; font-weight: 500; color: var(--ink); margin-bottom: var(--sp-md); margin-top: var(--sp-xxl); }
+.subsection-title-dark { color: var(--on-dark); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .comp-grid { grid-template-columns: 1fr 1fr; }
+  .timeline { grid-template-columns: 1fr 1fr; }
+  .scope-grid { grid-template-columns: 1fr; }
+  .split-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  nav .nav-links { display: none; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .comp-grid { grid-template-columns: 1fr; }
+  .timeline { grid-template-columns: 1fr; }
+  .li-card { grid-template-columns: 40px 1fr; }
+  .li-tags { display: none; }
+  .cta-band { margin: 0; border-radius: 0; padding: var(--sp-xxl) var(--sp-xl); }
+  .footer-inner { flex-direction: column; gap: var(--sp-lg); align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="1.5" fill="#141413"/><line x1="10" y1="0" x2="10" y2="6" stroke="#141413" stroke-width="1.5" stroke-linecap="round"/><line x1="10" y1="14" x2="10" y2="20" stroke="#141413" stroke-width="1.5" stroke-linecap="round"/><line x1="0" y1="10" x2="6" y2="10" stroke="#141413" stroke-width="1.5" stroke-linecap="round"/><line x1="14" y1="10" x2="20" y2="10" stroke="#141413" stroke-width="1.5" stroke-linecap="round"/><line x1="2.93" y1="2.93" x2="7.17" y2="7.17" stroke="#141413" stroke-width="1.5" stroke-linecap="round"/><line x1="12.83" y1="12.83" x2="17.07" y2="17.07" stroke="#141413" stroke-width="1.5" stroke-linecap="round"/><line x1="17.07" y1="2.93" x2="12.83" y2="7.17" stroke="#141413" stroke-width="1.5" stroke-linecap="round"/><line x1="7.17" y1="12.83" x2="2.93" y2="17.07" stroke="#141413" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="nav-logo-text">cassinelli.com.ar</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#diagnostico">Diagnóstico</a></li>
+      <li><a href="#benchmark">Benchmark UX</a></li>
+      <li><a href="#propuesta">Propuesta</a></li>
+      <li><a href="#cronograma">Cronograma</a></li>
+      <li><a href="#urls">Migración URLs</a></li>
+    </ul>
+    <a href="mailto:martin@cassinelli.com.ar" class="nav-cta">Contacto</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow">Propuesta de trabajo · Junio 2026</p>
+      <h1>Identidad Digital<br><em>Salud Ambiental</em></h1>
+      <p class="hero-sub">Diagnóstico, benchmark UX de la competencia y plan de trabajo para la nueva presencia digital B2B.</p>
+      <div class="hero-actions">
+        <a href="#propuesta" class="btn-primary">Ver propuesta</a>
+        <a href="#cronograma" class="btn-secondary">Cronograma</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <p class="hero-card-label">Resumen del proyecto</p>
+      <div class="hero-meta-row">
+        <div class="hero-meta-item"><p class="label">Cliente</p><p class="value">Salud Ambiental Control de Plagas S.A.</p></div>
+        <div class="hero-meta-item"><p class="label">Segmento objetivo</p><p class="value">B2B — Empresas e industrias</p></div>
+        <div class="hero-meta-item"><p class="label">Responsable</p><p class="value">Martin Cassinelli</p></div>
+        <div class="hero-meta-item"><p class="label">Alcance principal</p><p class="value">UX & Desarrollo Web + Asesoramiento</p></div>
+      </div>
+      <div class="hero-deadline">
+        <div class="hero-deadline-dot"></div>
+        <p><strong>Deadline: 31 julio 2026</strong> — el proveedor actual apaga el sitio</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIAGNOSTICO -->
+<section class="section-soft" id="diagnostico">
+  <div class="container">
+    <p class="section-eyebrow">01 — Diagnóstico</p>
+    <h2 class="section-title">Situación actual del sitio web</h2>
+    <p class="section-lead">El sitio corre sobre un CMS propietario cuyo proveedor comunicó el cierre del servicio. El análisis identifica los problemas estructurales y los activos que el nuevo sitio debe capitalizar.</p>
+
+    <div class="alert-banner alert-banner-error">
+      <span class="alert-icon">⚑</span>
+      <p><strong>El proveedor actual apaga el servicio a finales de julio.</strong> El sitio quedará offline si no se migra antes. Esto convierte el proyecto en prioridad operativa inmediata.</p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="badge-pill badge-error">Crítico</span>
+        <h4>Tecnología obsoleta</h4>
+        <p>CMS propietario (EasySitios/Nubix) próximo a discontinuarse. Sin HTTPS robusto, velocidad de carga deficiente y sin optimización mobile. No existe migración automática del contenido.</p>
+      </div>
+      <div class="feature-card">
+        <span class="badge-pill badge-warning">Estratégico</span>
+        <h4>Audiencia mal definida</h4>
+        <p>El sitio incluye "Casas particulares" en el menú y keywords residenciales en los metadatos. Esta señal confunde al algoritmo y atrae tráfico que no convierte como cliente B2B.</p>
+      </div>
+      <div class="feature-card">
+        <span class="badge-pill badge-error">Urgente</span>
+        <h4>Inversión publicitaria sin objetivo</h4>
+        <p>La pauta en AdWords corre sobre keywords genéricos sin landing pages dedicadas ni tracking de conversiones. No hay forma de medir el retorno real ni optimizar la inversión.</p>
+      </div>
+      <div class="feature-card feature-card-ok">
+        <span class="badge-pill badge-success">Activo</span>
+        <h4>Cartera de servicios sólida</h4>
+        <p>MIP, comercio exterior (NIMF 15), industria farmacéutica, food processing — diferenciadores técnicos reales que el sitio actual no comunica con suficiente claridad.</p>
+      </div>
+      <div class="feature-card feature-card-ok">
+        <span class="badge-pill badge-success">Activo</span>
+        <h4>Portal de clientes existente</h4>
+        <p>Tienen acceso para clientes en producción. Con la migración, este portal puede modernizarse y convertirse en diferenciador frente a la competencia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUEVO ESCENARIO -->
+<section class="section-cream" id="busqueda">
+  <div class="container">
+    <p class="section-eyebrow">02 — El nuevo escenario</p>
+    <h2 class="section-title">La forma de buscar proveedores cambió</h2>
+    <p class="section-lead">Google y los motores de IA transformaron cómo los decisores B2B encuentran proveedores. El objetivo ya no es "aparecer en Google" — es ser la fuente que los agentes de IA recomiendan.</p>
+
+    <div class="split-grid">
+      <div class="split-card-cream">
+        <h3>Tráfico orgánico en caída</h3>
+        <div class="point"><span class="point-arrow">→</span><p>Los AI Overviews de Google responden consultas directamente en el buscador — el usuario no hace clic al sitio.</p></div>
+        <div class="point"><span class="point-arrow">→</span><p>Las búsquedas informativas ("qué es MIP", "control de roedores en industrias") ya no generan tráfico al sitio.</p></div>
+        <div class="point"><span class="point-arrow">→</span><p>Las empresas sin presencia estructurada se vuelven invisibles para los algoritmos de IA.</p></div>
+        <div class="point"><span class="point-arrow">→</span><p>Un sitio sin contenido estructurado y sin autoridad de dominio no es citado por los motores de IA generativa.</p></div>
+      </div>
+      <div class="split-card-dark">
+        <span class="new-badge">Nuevo</span>
+        <h3>Búsqueda agéntica</h3>
+        <div class="point"><span class="point-arrow point-arrow-dark">→</span><p class="on-dark">ChatGPT, Perplexity, Gemini y Google AI Mode consultan la web para recomendar proveedores. Sin credibilidad digital, no sos recomendado.</p></div>
+        <div class="point"><span class="point-arrow point-arrow-dark">→</span><p class="on-dark">El agente busca señales de autoridad: contenido técnico, menciones en terceros, habilitaciones verificables, presencia consistente.</p></div>
+        <div class="point"><span class="point-arrow point-arrow-dark">→</span><p class="on-dark">El objetivo es ser la respuesta que un agente de IA le da a un gerente de operaciones que busca una empresa de MIP en Buenos Aires.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENCHMARK -->
+<section class="section-soft" id="benchmark">
+  <div class="container">
+    <p class="section-eyebrow">03 — Benchmark UX</p>
+    <h2 class="section-title">Análisis de experiencia por competidor</h2>
+    <p class="section-lead">Relevamiento directo de los tres competidores principales. El análisis evalúa propuesta de valor, jerarquía visual, CTAs, navegación, confianza y visibilidad en buscadores.</p>
+
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="comp-header">
+          <h3>Compañía Americana</h3>
+          <span class="url">camericana.com</span>
+        </div>
+        <div class="comp-body">
+          <span class="comp-score chip-green">El más sólido</span>
+          <p class="comp-section-label pos">Fortalezas UX</p>
+          <div class="comp-item"><span class="sign plus">+</span><span>Hero con propuesta de valor clara y stats: "60+ años, ISO 9001, gestión online"</span></div>
+          <div class="comp-item"><span class="sign plus">+</span><span>Proceso en 5 etapas comunicado visualmente — genera confianza inmediata</span></div>
+          <div class="comp-item"><span class="sign plus">+</span><span>WhatsApp con formulario pre-completado — mínima fricción para contactar</span></div>
+          <div class="comp-item"><span class="sign plus">+</span><span>Portal iGEO para clientes integrado — refuerza credibilidad operativa</span></div>
+          <div class="comp-item"><span class="sign plus">+</span><span>ISO 9001 y membresía UCABA visibles en footer</span></div>
+          <p class="comp-section-label neg">Debilidades UX</p>
+          <div class="comp-item"><span class="sign minus">−</span><span>Spinner de carga — primera impresión pobre antes de ver contenido</span></div>
+          <div class="comp-item"><span class="sign minus">−</span><span>One-pager: dificulta posicionar servicios específicos en SEO por URL</span></div>
+          <div class="comp-item"><span class="sign minus">−</span><span>Sin sección de rubros — no habla directamente a los decisores por industria</span></div>
+        </div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-header">
+          <h3>Truly Nolen Argentina</h3>
+          <span class="url">trulynolenargentina.com.ar</span>
+        </div>
+        <div class="comp-body">
+          <span class="comp-score chip-amber">Marca fuerte, UX débil</span>
+          <p class="comp-section-label pos">Fortalezas UX</p>
+          <div class="comp-item"><span class="sign plus">+</span><span>Respaldo de franquicia global — credibilidad inmediata</span></div>
+          <div class="comp-item"><span class="sign plus">+</span><span>Múltiples teléfonos visibles desde el hero</span></div>
+          <div class="comp-item"><span class="sign plus">+</span><span>Seguros contratados mencionados explícitamente — diferenciador de confianza</span></div>
+          <p class="comp-section-label neg">Debilidades UX</p>
+          <div class="comp-item"><span class="sign minus">−</span><span>WordPress genérico sin identidad visual local — diseño fechado</span></div>
+          <div class="comp-item"><span class="sign minus">−</span><span>Bloques de texto largos sin jerarquía — baja escaneabilidad en mobile</span></div>
+          <div class="comp-item"><span class="sign minus">−</span><span>Sin CTA principal claro — el usuario no sabe qué hacer primero</span></div>
+          <div class="comp-item"><span class="sign minus">−</span><span>Navegación sobrecargada: 7 ítems de menú más Login VIP</span></div>
+        </div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-header">
+          <h3>Clean City</h3>
+          <span class="url">cleancity.com.ar</span>
+        </div>
+        <div class="comp-body">
+          <span class="comp-score chip-red">Desactualizado</span>
+          <p class="comp-section-label pos">Fortalezas UX</p>
+          <div class="comp-item"><span class="sign plus">+</span><span>Posicionamiento sectorial claro: "centros comerciales, industrias, alimentos"</span></div>
+          <div class="comp-item"><span class="sign plus">+</span><span>Tecnología QR en estaciones de monitoreo — diferenciador técnico real</span></div>
+          <div class="comp-item"><span class="sign plus">+</span><span>LOIMOS como plataforma de informes — comunicado con claridad</span></div>
+          <div class="comp-item"><span class="sign plus">+</span><span>Estadísticas visibles: 30+ años, 300+ clientes, 24x7</span></div>
+          <p class="comp-section-label neg">Debilidades UX</p>
+          <div class="comp-item"><span class="sign minus">−</span><span>Sin meta description — invisible en buscadores y en IA</span></div>
+          <div class="comp-item"><span class="sign minus">−</span><span>Google+ en footer — red social cerrada en 2019</span></div>
+          <div class="comp-item"><span class="sign minus">−</span><span>Sin jerarquía visual — todo tiene el mismo peso</span></div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="subsection-title">Comparativa de criterios UX clave</h3>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Criterio UX</th><th>Cía. Americana</th><th>Truly Nolen</th><th>Clean City</th><th>Salud Ambiental</th></tr></thead>
+        <tbody>
+          <tr><td class="criterion">Propuesta de valor en hero</td><td><span class="chip chip-green">Clara y con stats</span></td><td><span class="chip chip-amber">Difusa, texto largo</span></td><td><span class="chip chip-amber">Slider genérico</span></td><td><span class="chip chip-red">Inexistente</span></td></tr>
+          <tr><td class="criterion">Jerarquía visual</td><td><span class="chip chip-green">Buena</span></td><td><span class="chip chip-amber">Débil</span></td><td><span class="chip chip-red">Muy débil</span></td><td><span class="chip chip-red">Muy débil</span></td></tr>
+          <tr><td class="criterion">CTA principal</td><td><span class="chip chip-green">Presupuesto + WhatsApp</span></td><td><span class="chip chip-amber">Solo teléfono</span></td><td><span class="chip chip-amber">Formulario básico</span></td><td><span class="chip chip-amber">Solo teléfono</span></td></tr>
+          <tr><td class="criterion">Navegación por rubros</td><td><span class="chip chip-amber">No</span></td><td><span class="chip chip-amber">Parcial</span></td><td><span class="chip chip-amber">Parcial</span></td><td><span class="chip chip-red">No</span></td></tr>
+          <tr><td class="criterion">Comunicación de confianza</td><td><span class="chip chip-green">ISO 9001 + UCABA</span></td><td><span class="chip chip-green">Franquicia global</span></td><td><span class="chip chip-green">Años + estadísticas</span></td><td><span class="chip chip-red">Oculta</span></td></tr>
+          <tr><td class="criterion">Portal / acceso clientes</td><td><span class="chip chip-green">iGEO online</span></td><td><span class="chip chip-green">Login VIP</span></td><td><span class="chip chip-green">LOIMOS</span></td><td><span class="chip chip-amber">Existe, sin valor</span></td></tr>
+          <tr><td class="criterion">SEO / visibilidad en IA</td><td><span class="chip chip-green">Estructurado</span></td><td><span class="chip chip-amber">Básico</span></td><td><span class="chip chip-red">Sin meta description</span></td><td><span class="chip chip-red">Sin estructura</span></td></tr>
+          <tr><td class="criterion">Mobile / velocidad</td><td><span class="chip chip-green">Bueno</span></td><td><span class="chip chip-green">Aceptable</span></td><td><span class="chip chip-amber">Básico</span></td><td><span class="chip chip-red">Muy deficiente</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- PROPUESTA -->
+<section class="section-cream" id="propuesta">
+  <div class="container">
+    <p class="section-eyebrow">04 — Propuesta</p>
+    <h2 class="section-title">Alcance del proyecto</h2>
+    <p class="section-lead">Un servicio principal de UX y desarrollo web, acompañado de asesoramiento estratégico en los aspectos de identidad digital que no requieren desarrollo.</p>
+
+    <div class="scope-grid">
+      <div class="scope-dark">
+        <span class="badge-pill badge-coral" style="margin-bottom:20px;display:inline-block;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Servicio principal</span>
+        <h3>UX & Desarrollo Web</h3>
+        <div class="scope-item"><span class="scope-arrow">→</span><p>Estrategia de contenido y arquitectura de información orientada a decisores B2B</p></div>
+        <div class="scope-item"><span class="scope-arrow">→</span><p>Diseño UX: wireframes de todas las secciones y prototipo navegable para validación</p></div>
+        <div class="scope-item"><span class="scope-arrow">→</span><p>Diseño UI: sistema visual completo aplicado a todas las pantallas y estados</p></div>
+        <div class="scope-item"><span class="scope-arrow">→</span><p>Desarrollo en tecnología moderna — Next.js o WordPress con Gutenberg</p></div>
+        <div class="scope-item"><span class="scope-arrow">→</span><p>SEO técnico desde cero: Core Web Vitals, mobile-first, schema markup</p></div>
+        <div class="scope-item"><span class="scope-arrow">→</span><p>Contenido estructurado para visibilidad en motores de IA generativa</p></div>
+        <div class="scope-item"><span class="scope-arrow">→</span><p>Formularios conectados a CRM o email con tracking de conversiones</p></div>
+        <div class="scope-item"><span class="scope-arrow">→</span><p>Capacitación básica al equipo para gestión autónoma del contenido</p></div>
+      </div>
+      <div class="scope-cream">
+        <span class="badge-pill" style="font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;display:inline-block;">Asesoramiento</span>
+        <h3>Acompañamiento estratégico</h3>
+        <div class="aside-item"><span class="aside-dot">·</span><span>Google Business Profile — configuración y optimización de ficha</span></div>
+        <div class="aside-item"><span class="aside-dot">·</span><span>LinkedIn empresa — perfil y plan de primeras publicaciones</span></div>
+        <div class="aside-item"><span class="aside-dot">·</span><span>Auditoría y recomendaciones de campañas AdWords</span></div>
+        <div class="aside-item"><span class="aside-dot">·</span><span>Vinculación a entidades del sector: UCABA, SENASA, etc.</span></div>
+        <div class="aside-item"><span class="aside-dot">·</span><span>Google Analytics 4 y Search Console</span></div>
+        <div class="aside-item"><span class="aside-dot">·</span><span>Seguimiento mensual post-lanzamiento durante 30 días</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRONOGRAMA -->
+<section class="section-soft" id="cronograma">
+  <div class="container">
+    <p class="section-eyebrow">05 — Cronograma</p>
+    <h2 class="section-title">Plan de trabajo — deadline: 31 de julio</h2>
+    <p class="section-lead">El cronograma está comprimido para llegar al deadline. Las fases se solapan: el prototipo UX se valida antes de iniciar desarrollo, y el SEO técnico se configura durante el desarrollo.</p>
+
+    <div class="alert-banner" style="margin-bottom:32px;">
+      <span class="alert-icon">⚠</span>
+      <p>El proveedor actual apaga el servicio a finales de julio. El nuevo sitio debe estar online antes de esa fecha para no perder la presencia digital y la autoridad de dominio acumulada.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="phase ph1">
+        <p class="phase-num">Fase 01</p>
+        <p class="phase-weeks">Sem. 1–2 · Jun 9–20</p>
+        <p class="phase-name">Estrategia y brief</p>
+        <ul class="phase-items">
+          <li>Posicionamiento y audiencia</li>
+          <li>Arquitectura de contenidos</li>
+          <li>Brief visual y keywords</li>
+        </ul>
+      </div>
+      <div class="phase ph2">
+        <p class="phase-num">Fase 02</p>
+        <p class="phase-weeks">Sem. 2–3 · Jun 16–27</p>
+        <p class="phase-name">UX — Wireframes</p>
+        <ul class="phase-items">
+          <li>Wireframes de secciones</li>
+          <li>Prototipo navegable</li>
+          <li>Validación con el equipo</li>
+        </ul>
+      </div>
+      <div class="phase ph3">
+        <p class="phase-num">Fase 03</p>
+        <p class="phase-weeks">Sem. 3–5 · Jun 23 – Jul 11</p>
+        <p class="phase-name">Diseño UI</p>
+        <ul class="phase-items">
+          <li>Sistema visual completo</li>
+          <li>Diseño de pantallas</li>
+          <li>Responsive completo</li>
+        </ul>
+      </div>
+      <div class="phase ph4">
+        <p class="phase-num">Fase 04</p>
+        <p class="phase-weeks">Sem. 5–7 · Jul 7–25</p>
+        <p class="phase-name">Desarrollo</p>
+        <ul class="phase-items">
+          <li>Frontend + CMS</li>
+          <li>SEO técnico y velocidad</li>
+          <li>Formularios y Analytics</li>
+        </ul>
+      </div>
+      <div class="phase ph5">
+        <p class="phase-num">Fase 05</p>
+        <p class="phase-weeks">Sem. 7 · Jul 23–31</p>
+        <p class="phase-name">QA + go-live</p>
+        <ul class="phase-items">
+          <li>Testing en dispositivos</li>
+          <li>Migración de contenidos</li>
+          <li>Lanzamiento</li>
+        </ul>
+      </div>
+    </div>
+    <div class="deadline-wrap">
+      <span class="deadline-badge">⚑ Deadline: 31 de julio 2026</span>
+      <p style="font-size:13px;color:var(--muted);">Las fases se solapan para comprimir el cronograma sin sacrificar calidad.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LINKEDIN -->
+<section class="section-cream" id="linkedin">
+  <div class="container">
+    <p class="section-eyebrow">06 — Estrategia LinkedIn</p>
+    <h2 class="section-title">Alcanzar decisores B2B donde toman decisiones</h2>
+    <p class="section-lead">LinkedIn es donde los gerentes de calidad, directores de operaciones y responsables de facilities buscan proveedores del sector. Esta estrategia opera en paralelo al nuevo sitio.</p>
+
+    <div class="li-grid">
+      <div class="li-card">
+        <div class="li-num">01</div>
+        <div class="li-content">
+          <h4>Perfil de empresa y contenido de autoridad</h4>
+          <p>Página de empresa activa con publicaciones técnicas mensuales: normativa SENASA, casos de uso en industria farmacéutica, alertas de brotes, guías de MIP. El objetivo es que el decisor encuentre a Salud Ambiental cuando busca referencias del sector, y que los motores de IA citen esas publicaciones como fuente de autoridad.</p>
+        </div>
+        <div class="li-tags">
+          <span class="li-tag">Contenido técnico</span>
+          <span class="li-tag">SEO en LinkedIn</span>
+          <span class="li-tag">Autoridad de marca</span>
+        </div>
+      </div>
+      <div class="li-card">
+        <div class="li-num">02</div>
+        <div class="li-content">
+          <h4>Mensajes directos con respuestas interactivas (Sponsored Messaging)</h4>
+          <p>Campañas de LinkedIn Sponsored Messaging (InMail patrocinado) con formato conversacional: una pregunta corta y botones de respuesta que califican al prospecto antes del primer llamado. Segmentación precisa por cargo — Gerente de Calidad, Director de Operaciones, Facilities Manager — e industria: alimentos, farmacéutica, hotelería, comercio exterior.</p>
+        </div>
+        <div class="li-tags">
+          <span class="li-tag">LinkedIn Ads</span>
+          <span class="li-tag">InMail patrocinado</span>
+          <span class="li-tag">Lead nurturing</span>
+        </div>
+      </div>
+      <div class="li-card">
+        <div class="li-num">03</div>
+        <div class="li-content">
+          <h4>Red orgánica y outreach directo</h4>
+          <p>Conectar con decisores de las industrias objetivo desde el perfil personal del equipo. Interactuar en publicaciones del sector para ganar visibilidad sin inversión publicitaria. Secuencia de mensajes directos — sin spam — que abre conversaciones aprovechando la red de contactos existente.</p>
+        </div>
+        <div class="li-tags">
+          <span class="li-tag">Outreach orgánico</span>
+          <span class="li-tag">Social selling</span>
+          <span class="li-tag">Red existente</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- URLs -->
+<section class="section-soft" id="urls">
+  <div class="container">
+    <p class="section-eyebrow">07 — Migración de URLs</p>
+    <h2 class="section-title">Qué hacer con cada endpoint del sitio actual</h2>
+    <p class="section-lead">El sitio actual tiene 46 URLs indexadas. Cada una debe resolverse antes del go-live para preservar el posicionamiento acumulado. Las redirecciones 301 transfieren el juice de SEO.</p>
+
+    <div class="stat-row">
+      <div class="stat-card"><span class="num">46</span><span class="lbl">URLs totales identificadas</span></div>
+      <div class="stat-card"><span class="num" style="color:var(--success)">14</span><span class="lbl">Conservar con nueva URL</span></div>
+      <div class="stat-card"><span class="num" style="color:#1e40af">20</span><span class="lbl">Consolidar vía 301</span></div>
+      <div class="stat-card"><span class="num" style="color:var(--error)">12</span><span class="lbl">Discontinuar</span></div>
+    </div>
+
+    <h3 class="subsection-title">Conservar — crear equivalente en el nuevo sitio</h3>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>URL actual</th><th>Acción</th><th>URL nueva</th><th>Razón</th></tr></thead>
+        <tbody>
+          <tr><td class="url-code">/secciones/manejo-integrado-de-plagas-mip.html</td><td><span class="action-keep">conservar</span></td><td class="url-dest">/servicios/mip</td><td class="url-note">Servicio core. Alta intención de búsqueda B2B.</td></tr>
+          <tr><td class="url-code">/secciones/servicio-de-control-de-roedores.html</td><td><span class="action-keep">conservar</span></td><td class="url-dest">/servicios/control-roedores</td><td class="url-note">Alto volumen, contenido técnico sólido.</td></tr>
+          <tr><td class="url-code">/secciones/control-de-palomas.html</td><td><span class="action-keep">conservar</span></td><td class="url-dest">/servicios/control-palomas</td><td class="url-note">Buen posicionamiento en nicho específico.</td></tr>
+          <tr><td class="url-code">/secciones/fumigaciones-para-el-comercio-exterior.html</td><td><span class="action-keep">conservar</span></td><td class="url-dest">/servicios/comercio-exterior</td><td class="url-note">Nicho sin competencia directa fuerte.</td></tr>
+          <tr><td class="url-code">/secciones/tratamientos-cuarentenarios.html</td><td><span class="action-keep">conservar</span></td><td class="url-dest">/servicios/tratamientos-cuarentenarios</td><td class="url-note">NIMF 15, término técnico de alta especificidad.</td></tr>
+          <tr><td class="url-code">/secciones/fumigaciones-de-embalaje-de-madera.html</td><td><span class="action-keep">conservar</span></td><td class="url-dest">/servicios/embalaje-madera-nimf15</td><td class="url-note">Búsqueda muy específica del sector.</td></tr>
+          <tr><td class="url-code">/secciones/limpieza-de-tanques-de-agua-potable.html</td><td><span class="action-keep">conservar</span></td><td class="url-dest">/servicios/limpieza-tanques</td><td class="url-note">Servicio diferenciado con volumen de búsqueda real.</td></tr>
+          <tr><td class="url-code">/secciones/industria-farmaceutica.html</td><td><span class="action-keep">conservar</span></td><td class="url-dest">/rubros/industria-farmaceutica</td><td class="url-note">Rubro regulado, alta conversión B2B.</td></tr>
+          <tr><td class="url-code">/secciones/plantas-procesadoras-de-alimentos.html</td><td><span class="action-keep">conservar</span></td><td class="url-dest">/rubros/plantas-alimentos</td><td class="url-note">Obligación legal de MIP — alta intención.</td></tr>
+          <tr><td class="url-code">/secciones/hoteles.html</td><td><span class="action-keep">conservar</span></td><td class="url-dest">/rubros/hoteles</td><td class="url-note">Decisión centralizada en facilities B2B.</td></tr>
+          <tr><td class="url-code">/secciones/habilitaciones.html</td><td><span class="action-keep">conservar</span></td><td class="url-dest">/habilitaciones</td><td class="url-note">Diferenciador clave de confianza.</td></tr>
+          <tr><td class="url-code">/secciones/la-empresa.html</td><td><span class="action-keep">conservar</span></td><td class="url-dest">/nosotros</td><td class="url-note">Necesaria para autoridad de dominio.</td></tr>
+          <tr><td class="url-code">/contactos</td><td><span class="action-keep">conservar</span></td><td class="url-dest">/contacto</td><td class="url-note">Normalizar URL con 301 desde la vieja.</td></tr>
+          <tr><td class="url-code">/</td><td><span class="action-keep">conservar</span></td><td class="url-dest">/</td><td class="url-note">Home indexada. 301 si cambia dominio.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subsection-title">Consolidar — redirigir 301, no crear equivalente</h3>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>URL actual</th><th>Acción</th><th>Redirigir a</th><th>Razón</th></tr></thead>
+        <tbody>
+          <tr><td class="url-code">/secciones/control-de-plagas-domiciliarias.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/servicios/mip</td><td class="url-note">Redundante. "Domiciliarias" contradice foco B2B.</td></tr>
+          <tr><td class="url-code">/secciones/desinsectacion-de-cucarachas.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/servicios/mip</td><td class="url-note">Sub-plaga integrable dentro de MIP.</td></tr>
+          <tr><td class="url-code">/secciones/desinsectacion-de-pulgas.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/servicios/mip</td><td class="url-note">Mayormente residencial — bajo valor B2B.</td></tr>
+          <tr><td class="url-code">/secciones/hormigas.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/servicios/mip</td><td class="url-note">Ídem. Volumen bajo en búsquedas B2B.</td></tr>
+          <tr><td class="url-code">/secciones/mosquitos.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/servicios/mip</td><td class="url-note">Dengue relevante, en contexto empresarial.</td></tr>
+          <tr><td class="url-code">/secciones/redes.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/servicios/control-palomas</td><td class="url-note">Sub-método de palomas — integrar en página de aves.</td></tr>
+          <tr><td class="url-code">/secciones/pinchos.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/servicios/control-palomas</td><td class="url-note">Ídem.</td></tr>
+          <tr><td class="url-code">/secciones/hilos-de-acero.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/servicios/control-palomas</td><td class="url-note">Ídem.</td></tr>
+          <tr><td class="url-code">/secciones/bloqueadores-de-acceso.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/servicios/control-palomas</td><td class="url-note">4 sub-páginas de palomas → 1 sola bien estructurada.</td></tr>
+          <tr><td class="url-code">/secciones/control-de-murcielagos.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/servicios/control-palomas</td><td class="url-note">Agrupar en "control de aves y fauna urbana".</td></tr>
+          <tr><td class="url-code">/secciones/control-de-aves-y-palomas.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/servicios/control-palomas</td><td class="url-note">Duplicado — redirigir a la URL canónica.</td></tr>
+          <tr><td class="url-code">/secciones/abejas-avispas.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/servicios/mip</td><td class="url-note">Mencionar dentro de MIP como caso específico.</td></tr>
+          <tr><td class="url-code">/secciones/empresas-industrias.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/rubros</td><td class="url-note">Reemplazar con hub de rubros.</td></tr>
+          <tr><td class="url-code">/secciones/comercios.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/rubros</td><td class="url-note">Baja prioridad B2B. Mencionar en hub general.</td></tr>
+          <tr><td class="url-code">/secciones/centros-de-salud.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/rubros/industria-farmaceutica</td><td class="url-note">Mismo decisor y regulación que farma.</td></tr>
+          <tr><td class="url-code">/secciones/institutos-educativos.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/rubros</td><td class="url-note">Baja conversión B2B. Mencionar brevemente.</td></tr>
+          <tr><td class="url-code">/secciones/tratamos.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/rubros</td><td class="url-note">Índice de rubros — reemplazar con nuevo hub.</td></tr>
+          <tr><td class="url-code">/secciones/servicios.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/servicios</td><td class="url-note">Normalizar URL y crear nueva.</td></tr>
+          <tr><td class="url-code">/secciones/situacion-actual-de-las-epidemias-en-argentina.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/blog</td><td class="url-note">Contenido desactualizado.</td></tr>
+          <tr><td class="url-code">/secciones/desinfeccion-control-de-patogenos-covid-19.html</td><td><span class="action-merge">consolidar</span></td><td class="url-dest">/servicios/mip</td><td class="url-note">COVID en URL — lastre de posicionamiento actual.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="subsection-title">Discontinuar — redirigir a home o sección general</h3>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>URL actual</th><th>Acción</th><th>Redirigir a</th><th>Razón</th></tr></thead>
+        <tbody>
+          <tr><td class="url-code">/secciones/residenciales.html</td><td><span class="action-drop">discontinuar</span></td><td class="url-dest">/</td><td class="url-note">Contradice posicionamiento B2B.</td></tr>
+          <tr><td class="url-code">/secciones/coronavirus.html</td><td><span class="action-drop">discontinuar</span></td><td class="url-dest">/servicios/mip</td><td class="url-note">URL con COVID como keyword — daña relevancia.</td></tr>
+          <tr><td class="url-code">/secciones/desinfeccion-con-ozono-03.html</td><td><span class="action-drop">discontinuar</span></td><td class="url-dest">/servicios/mip</td><td class="url-note">Tecnología post-COVID con demanda muy reducida.</td></tr>
+          <tr><td class="url-code">/secciones/tratamientos-especiales.html</td><td><span class="action-drop">discontinuar</span></td><td class="url-dest">/servicios/comercio-exterior</td><td class="url-note">Título vago — contenido de granos a reubicar.</td></tr>
+          <tr><td class="url-code">/blog/dengue-bcat.html</td><td><span class="action-drop">discontinuar</span></td><td class="url-dest">/blog</td><td class="url-note">Categoría sin contenido propio.</td></tr>
+          <tr><td class="url-code">/blog/patogenos.html</td><td><span class="action-drop">discontinuar</span></td><td class="url-dest">/blog</td><td class="url-note">Ídem.</td></tr>
+          <tr><td class="url-code">/blog/roedores.html</td><td><span class="action-drop">discontinuar</span></td><td class="url-dest">/blog</td><td class="url-note">Ídem.</td></tr>
+          <tr><td class="url-code">/blog/cucarachas.html</td><td><span class="action-drop">discontinuar</span></td><td class="url-dest">/blog</td><td class="url-note">Keyword residencial de bajo valor B2B.</td></tr>
+          <tr><td class="url-code">/blog/homigas.html</td><td><span class="action-drop">discontinuar</span></td><td class="url-dest">/blog</td><td class="url-note">Typo en la URL — sin valor SEO recuperable.</td></tr>
+          <tr><td class="url-code">/blog/palomas-bcat.html</td><td><span class="action-drop">discontinuar</span></td><td class="url-dest">/blog</td><td class="url-note">Índice vacío.</td></tr>
+          <tr><td class="url-code">/blog/otras-plagas.html</td><td><span class="action-drop">discontinuar</span></td><td class="url-dest">/blog</td><td class="url-note">Categoría genérica sin contenido útil.</td></tr>
+          <tr><td class="url-code">/usuarios/frontlogin</td><td><span class="action-drop">discontinuar</span></td><td class="url-dest">/portal</td><td class="url-note">URL de sistema legado — reemplazar con portal nuevo.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert-banner" style="margin-top:8px;">
+      <span class="alert-icon">⚑</span>
+      <p><strong>Regla crítica:</strong> toda URL debe devolver HTTP 301 permanente — nunca 302 ni 404. El mapa de redirecciones debe estar configurado antes del go-live, no después.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK WINS -->
+<section class="section-cream">
+  <div class="container">
+    <p class="section-eyebrow">Mientras tanto</p>
+    <h2 class="section-title">Acciones inmediatas sin costo</h2>
+    <p class="section-lead">Se pueden arrancar esta semana, en paralelo al inicio del proyecto. No requieren modificar el sitio actual.</p>
+
+    <div class="qw-grid">
+      <div class="qw-card">
+        <div class="qw-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <div><h4>Google Business Profile</h4><p>Reclamar y verificar la ficha. Impacto inmediato en búsquedas de marca y locales en Buenos Aires.</p></div>
+      </div>
+      <div class="qw-card">
+        <div class="qw-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+        <div><h4>LinkedIn Empresa</h4><p>Completar el perfil con descripción técnica B2B y publicar las primeras 3 piezas de contenido sectorial.</p></div>
+      </div>
+      <div class="qw-card">
+        <div class="qw-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m22 8-6 4 6 4V8Z"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg></div>
+        <div><h4>AdWords — limpieza rápida</h4><p>Pausar keywords residenciales para mejorar inmediatamente la calidad del tráfico captado.</p></div>
+      </div>
+      <div class="qw-card">
+        <div class="qw-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <div><h4>Analytics 4 + Search Console</h4><p>Instalar en el sitio actual para medir tráfico y keywords que posicionan antes del cierre del proveedor.</p></div>
+      </div>
+      <div class="qw-card">
+        <div class="qw-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div><h4>Directorios sectoriales</h4><p>Listado en UCABA y cámaras afines. Gratuito, mejora autoridad de dominio y presencia en IA.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA CORAL -->
+<div style="background:var(--surface-soft);padding:var(--sp-xxl) 0;">
+  <div class="cta-band">
+    <h2>¿Arrancamos con el proyecto?</h2>
+    <p>Cualquier consulta sobre el alcance, el cronograma o los próximos pasos.</p>
+    <a href="mailto:martin@cassinelli.com.ar" class="btn-canvas">martin@cassinelli.com.ar</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <p class="footer-logo">Martin Cassinelli</p>
+      <p class="footer-note">Propuesta para Salud Ambiental · Junio 2026</p>
+    </div>
+    <div class="footer-email">
+      <a href="mailto:martin@cassinelli.com.ar">martin@cassinelli.com.ar</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
